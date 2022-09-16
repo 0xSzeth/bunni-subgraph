@@ -8,8 +8,8 @@ export function getBunniToken(address: Address): BunniToken {
   if (bunniToken === null) {
     bunniToken = new BunniToken(address.toHex());
 
-    bunniToken.pool = ZERO_ADDR.toHex();
-    bunniToken.address = address.toHex();
+    bunniToken.pool = ZERO_ADDR;
+    bunniToken.address = address;
     bunniToken.tickLower = ZERO_INT;
     bunniToken.tickUpper = ZERO_INT;
 
