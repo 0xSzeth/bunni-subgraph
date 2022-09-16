@@ -2,8 +2,8 @@ import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { BunniToken } from "../../generated/schema";
 import { ZERO_INT, ZERO_ADDR} from "./constants";
 
-getBunniToken(address: Address): BunniToken {
-  let bunniToken = BunniToken.load(address);
+export function getBunniToken(address: Address): BunniToken {
+  let bunniToken = BunniToken.load(address.toHex());
 
   if (bunniToken === null) {
     bunniToken = new BunniToken(address.toHex());
