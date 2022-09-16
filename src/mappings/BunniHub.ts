@@ -1,6 +1,6 @@
 import { BigInt } from "@graphprotocol/graph-ts"
-import { BunniHub, Compound, Deposit, NewBunni, OwnershipTransferred, PayProtocolFee, SetProtocolFee, Withdraw } from "../generated/BunniHub/BunniHub"
-import { BunniToken } from "../generated/schema"
+import { BunniHub, Compound, Deposit, NewBunni, OwnershipTransferred, PayProtocolFee, SetProtocolFee, Withdraw } from "../../generated/BunniHub/BunniHub"
+import { BunniToken } from "../../generated/schema"
 
 export function handleCompound(event: Compound): void {}
 

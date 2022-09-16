@@ -39,4 +39,4 @@ dataSources:
           handler: handleSetProtocolFee
         - event: Withdraw(indexed address,indexed address,indexed bytes32,uint128,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/mapping.ts
+      file: ./src/mappings/BunniHub.ts
