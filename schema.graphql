@@ -1,6 +1,7 @@
-type ExampleEntity @entity {
+type BunniToken @entity {
   id: ID!
-  count: BigInt!
-  sender: Bytes! # address
-  bunniKeyHash: Bytes! # bytes32
+  pool: Bytes!
+  address: Bytes!
+  tickLower: BigInt!
+  tickUpper: BigInt!
 }

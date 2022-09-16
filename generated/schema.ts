@@ -11,31 +11,32 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ExampleEntity extends Entity {
+export class BunniToken extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("count", Value.fromBigInt(BigInt.zero()));
-    this.set("sender", Value.fromBytes(Bytes.empty()));
-    this.set("bunniKeyHash", Value.fromBytes(Bytes.empty()));
+    this.set("pool", Value.fromBytes(Bytes.empty()));
+    this.set("address", Value.fromBytes(Bytes.empty()));
+    this.set("tickLower", Value.fromBigInt(BigInt.zero()));
+    this.set("tickUpper", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ExampleEntity entity without an ID");
+    assert(id != null, "Cannot save BunniToken entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save ExampleEntity entity with non-string ID. " +
+        "Cannot save BunniToken entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("ExampleEntity", id.toString(), this);
+      store.set("BunniToken", id.toString(), this);
     }
   }
 
-  static load(id: string): ExampleEntity | null {
-    return changetype<ExampleEntity | null>(store.get("ExampleEntity", id));
+  static load(id: string): BunniToken | null {
+    return changetype<BunniToken | null>(store.get("BunniToken", id));
   }
 
   get id(): string {
@@ -47,30 +48,39 @@ export class ExampleEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
+  get pool(): Bytes {
+    let value = this.get("pool");
+    return value!.toBytes();
+  }
+
+  set pool(value: Bytes) {
+    this.set("pool", Value.fromBytes(value));
+  }
+
+  get address(): Bytes {
+    let value = this.get("address");
+    return value!.toBytes();
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+
+  get tickLower(): BigInt {
+    let value = this.get("tickLower");
     return value!.toBigInt();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set tickLower(value: BigInt) {
+    this.set("tickLower", Value.fromBigInt(value));
   }
 
-  get sender(): Bytes {
-    let value = this.get("sender");
-    return value!.toBytes();
+  get tickUpper(): BigInt {
+    let value = this.get("tickUpper");
+    return value!.toBigInt();
   }
 
-  set sender(value: Bytes) {
-    this.set("sender", Value.fromBytes(value));
-  }
-
-  get bunniKeyHash(): Bytes {
-    let value = this.get("bunniKeyHash");
-    return value!.toBytes();
-  }
-
-  set bunniKeyHash(value: Bytes) {
-    this.set("bunniKeyHash", Value.fromBytes(value));
+  set tickUpper(value: BigInt) {
+    this.set("tickUpper", Value.fromBigInt(value));
   }
 }
